@@ -36,63 +36,63 @@ class Clb {
     users[1] = s;
     users[2] = k;
     users[3] = m;
-    users[3] = f;
+    users[4] = f;
 
     var avms = new List(5);
     avms[0] = x.burgerKing;
     avms[1] = x.sinema;
     avms[2] = x.koton;
     avms[3] = x.mavi;
-    avms[3] = x.fenerium;
+    avms[4] = x.fenerium;
 
-    for(int i=0;i<5;i++){
-      if(users[i]== true ){
-      if(avms[i]==false){
-      
-      }
-
-      }
-    }
-
-
-
-
-
-
-
-
-    /*
+    var olmayanlar = new List(5);
     int sayac = 0;
-    if (x.burgerKing == b) {
-      sayac++;
+
+    for (int i = 0; i < 5; i++) {
+      if (users[i] == true) {
+        if (avms[i] == false) {
+          olmayanlar[sayac] = i;
+          sayac++;
+        }
+      }
     }
-    if (x.sinema == s) {
-      sayac++;
+    if (sayac == 0) {
+      print("eslesti");
+    } else {
+      for (int j = 0; j < sayac; j++) {
+        if (olmayanlar[j] == 0) {
+          print("Burger King yok");
+        }
+        if (olmayanlar[j] == 1) {
+          print("Sinema yok");
+        }
+        if (olmayanlar[j] == 2) {
+          print("Koton yok");
+        }
+        if (olmayanlar[j] == 3) {
+          print("Mavi yok");
+        }
+        if (olmayanlar[j] == 0) {
+          print("Fenerium yok");
+        }
+      }
     }
-    if (x.koton == k) {
-      sayac++;
-    }
-    if (x.mavi == m) {
-      sayac++;
-    }
-    if (x.fenerium == f) {
-      sayac++;
-    }
-    return sayac;
   }
 
   void chooser(bool b, bool s, bool k, bool m, bool f) {
-    var lst = new List(4);
-
-    lst[0] = karsilastirma(kipa, b, s, k, m, f);
-    lst[1] = karsilastirma(optimum, b, s, k, m, f);
-    lst[2] = karsilastirma(palmiye, b, s, k, m, f);
-    lst[3] = karsilastirma(agora, b, s, k, m, f);
+    print("Kipa");
+    karsilastirma(kipa, b, s, k, m, f);
+    print("Optimum");
+    karsilastirma(optimum, b, s, k, m, f);
+    print("Palmiye");
+    karsilastirma(palmiye, b, s, k, m, f);
+    print("Fenerium");
+    karsilastirma(agora, b, s, k, m, f);
   }
 }
-*/}
+
 void main() {
-  print(
+  /*print(
       " Lütfen gitmek istediğiniz AVM'de aşağıdaki markalar bulunsun istiyorsanız 1'e, farketmez ise herhangi bir tuşa basın.");
   //sleep(Duration(seconds: 3));
   print(" Burger King");
@@ -138,9 +138,14 @@ void main() {
     fenerno = true;
   } else {
     fenerno = false;
-  }
+  }*/
 
-  var x = Clb();
-  //x.chooser(burgerno, sinemano, kotonno, mavino, fenerno);
+  bool burgerno = false;
+  bool sinemano = true;
+  bool kotonno = true;
+  bool mavino = true;
+  bool fenerno = false;
+
+  var x = new Clb();
+  x.chooser(burgerno, sinemano, kotonno, mavino, fenerno);
 }
-  
