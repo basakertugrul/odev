@@ -1,8 +1,15 @@
+import 'dart:collection';
+import 'dart:convert';
+import 'Avm.dart';
+
 class Clb {
   var kipa = Avm(false, true, true, false, false);
   var optimum = Avm(true, false, true, true, true);
   var palmiye = Avm(false, false, true, true, false);
   var agora = Avm(true, true, true, true, false);
+
+  var olmayanlar = new List(5);
+  int sayac = 0;
 
   void karsilastirma(Avm x, bool b, bool s, bool k, bool m, bool f) {
     var users = new List(5);
@@ -19,20 +26,21 @@ class Clb {
     avms[3] = x.mavi;
     avms[4] = x.fenerium;
 
-    var olmayanlar = new List(5);
-    int sayac = 0;
-
     for (int i = 0; i < 5; i++) {
-      if (users[i] == true) {
-        if (avms[i] == false) {
-          olmayanlar[sayac] = i;
-          sayac++;
-        }
+      if (users[i] == true && avms[i] == false) {
+        olmayanlar[sayac] = i;
+        sayac++;
       }
     }
-    if (sayac == 0) {
+    x.siralama = sayac;
+  }
+
+  void chooser(bool b, bool s, bool k, bool m, bool f) {
+// choosera al sıralamadan sonra yazdır
+    /*if (sayac == 0) {
       print("eslesti");
     } else {
+      
       for (int j = 0; j < sayac; j++) {
         if (olmayanlar[j] == 0) {
           print("Burger King yok");
@@ -46,21 +54,19 @@ class Clb {
         if (olmayanlar[j] == 3) {
           print("Mavi yok");
         }
-        if (olmayanlar[j] == 0) {
+        if (olmayanlar[j] == 4) {
           print("Fenerium yok");
         }
       }
-    }
-  }
+    }*/
 
-  void chooser(bool b, bool s, bool k, bool m, bool f) {
     print("Kipa");
     karsilastirma(kipa, b, s, k, m, f);
     print("Optimum");
     karsilastirma(optimum, b, s, k, m, f);
     print("Palmiye");
     karsilastirma(palmiye, b, s, k, m, f);
-    print("Fenerium");
+    print("Agora");
     karsilastirma(agora, b, s, k, m, f);
   }
 }

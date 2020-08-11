@@ -20,4 +20,6 @@ class Avm {
     }
     return k;
   }
+
+  int siralama;
 }
