@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'Avm.dart';
 import 'Clb.dart';
 
 void main() {
@@ -7,8 +5,10 @@ void main() {
   bool sinemano = true;
   bool kotonno = true;
   bool mavino = true;
-  bool fenerno = true;
+  bool fenerno = false;
+
+  int konum = 50;
 
   var x = new Clb();
-  x.chooser(burgerno, sinemano, kotonno, mavino, fenerno);
+  x.chooser(burgerno, sinemano, kotonno, mavino, fenerno, konum);
 }

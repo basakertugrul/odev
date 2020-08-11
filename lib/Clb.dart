@@ -1,10 +1,10 @@
 import 'Avm.dart';
 
 class Clb {
-  var kipa = Avm(false, true, true, false, false);
-  var optimum = Avm(true, false, true, true, true);
-  var palmiye = Avm(false, false, true, true, false);
-  var agora = Avm(true, true, true, true, false);
+  var kipa = Avm('kipa', false, true, true, false, false, 40);
+  var optimum = Avm('optimum', true, false, true, true, true, 25);
+  var palmiye = Avm('palmiye', false, false, true, true, false, 35);
+  var agora = Avm('agora', true, true, true, true, false, 30);
 
   var olmayanlar = new List(5);
   int sayac;
@@ -34,7 +34,7 @@ class Clb {
     x.siralama = sayac;
   }
 
-  void chooser(bool b, bool s, bool k, bool m, bool f) {
+  void chooser(bool b, bool s, bool k, bool m, bool f, int konumkullanici) {
 // choosera al sıralamadan sonra yazdır
     /*if (sayac == 0) {
       print("eslesti");
@@ -63,17 +63,20 @@ class Clb {
     karsilastirma(optimum, b, s, k, m, f);
     karsilastirma(palmiye, b, s, k, m, f);
     karsilastirma(agora, b, s, k, m, f);
-    List<int> sira = [
-      kipa.siralama,
-      optimum.siralama,
-      palmiye.siralama,
-      agora.siralama
-    ];
-    sira.sort();
-    print(sira);
 
-    for (int k = 0; k < 4; k++) {
-      if (sira[k] == sira[k + 1]) {}
+    List<Avm> sira = [kipa, optimum, palmiye, agora];
+    for (int p = 0; p < 4; p++) {
+      print(sira[p].ad);
     }
+
+    sira.sort((a, b) => a.siralama.compareTo(b.siralama));
+
+    for (int p = 0; p < 4; p++) {
+      print(sira[p].ad);
+      print(sira[p].mesafe(konumkullanici));
+    }
+    //for (int p = 0; p < 4; p++) {
+    //  if (sira[p] == sira[p + 1]) {}
+    // }
   }
 }
