@@ -1,5 +1,3 @@
-import 'dart:collection';
-import 'dart:convert';
 import 'Avm.dart';
 
 class Clb {
@@ -9,9 +7,10 @@ class Clb {
   var agora = Avm(true, true, true, true, false);
 
   var olmayanlar = new List(5);
-  int sayac = 0;
+  int sayac;
 
   void karsilastirma(Avm x, bool b, bool s, bool k, bool m, bool f) {
+    sayac = 0;
     var users = new List(5);
     users[0] = b;
     users[1] = s;
@@ -60,13 +59,21 @@ class Clb {
       }
     }*/
 
-    print("Kipa");
     karsilastirma(kipa, b, s, k, m, f);
-    print("Optimum");
     karsilastirma(optimum, b, s, k, m, f);
-    print("Palmiye");
     karsilastirma(palmiye, b, s, k, m, f);
-    print("Agora");
     karsilastirma(agora, b, s, k, m, f);
+    List<int> sira = [
+      kipa.siralama,
+      optimum.siralama,
+      palmiye.siralama,
+      agora.siralama
+    ];
+    sira.sort();
+    print(sira);
+
+    for (int k = 0; k < 4; k++) {
+      if (sira[k] == sira[k + 1]) {}
+    }
   }
 }

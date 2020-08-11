@@ -7,7 +7,7 @@ void main() {
   bool sinemano = true;
   bool kotonno = true;
   bool mavino = true;
-  bool fenerno = false;
+  bool fenerno = true;
 
   var x = new Clb();
   x.chooser(burgerno, sinemano, kotonno, mavino, fenerno);
