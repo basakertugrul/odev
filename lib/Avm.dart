@@ -17,6 +17,7 @@ class Avm {
     this.mavi = mavi;
     this.fenerium = fenerium;
     this.ad = ad;
+    this.konum = konum;
   }
 
   int mesafe(int b) {
@@ -26,4 +27,6 @@ class Avm {
     }
     return k;
   }
+
+  List<int> olmayanlar = [-1, -1, -1, -1, -1];
 }

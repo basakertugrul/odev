@@ -6,7 +6,6 @@ class Clb {
   var palmiye = Avm('palmiye', false, false, true, true, false, 35);
   var agora = Avm('agora', true, true, true, true, false, 30);
 
-  var olmayanlar = new List(5);
   int sayac;
 
   void karsilastirma(Avm x, bool b, bool s, bool k, bool m, bool f) {
@@ -27,7 +26,7 @@ class Clb {
 
     for (int i = 0; i < 5; i++) {
       if (users[i] == true && avms[i] == false) {
-        olmayanlar[sayac] = i;
+        x.olmayanlar[sayac] = i;
         sayac++;
       }
     }
@@ -35,48 +34,52 @@ class Clb {
   }
 
   void chooser(bool b, bool s, bool k, bool m, bool f, int konumkullanici) {
-// choosera al sıralamadan sonra yazdır
-    /*if (sayac == 0) {
-      print("eslesti");
-    } else {
-      
-      for (int j = 0; j < sayac; j++) {
-        if (olmayanlar[j] == 0) {
-          print("Burger King yok");
-        }
-        if (olmayanlar[j] == 1) {
-          print("Sinema yok");
-        }
-        if (olmayanlar[j] == 2) {
-          print("Koton yok");
-        }
-        if (olmayanlar[j] == 3) {
-          print("Mavi yok");
-        }
-        if (olmayanlar[j] == 4) {
-          print("Fenerium yok");
-        }
-      }
-    }*/
-
     karsilastirma(kipa, b, s, k, m, f);
     karsilastirma(optimum, b, s, k, m, f);
     karsilastirma(palmiye, b, s, k, m, f);
     karsilastirma(agora, b, s, k, m, f);
 
     List<Avm> sira = [kipa, optimum, palmiye, agora];
-    for (int p = 0; p < 4; p++) {
-      print(sira[p].ad);
-    }
 
     sira.sort((a, b) => a.siralama.compareTo(b.siralama));
 
-    for (int p = 0; p < 4; p++) {
-      print(sira[p].ad);
-      print(sira[p].mesafe(konumkullanici));
+    var temp = Avm('temp', false, false, false, false, false, 10000);
+
+    for (int pp = 0; pp < 4; pp++) {
+      for (int p = 0; p < 3; p++) {
+        if (sira[p] == sira[p + 1]) {
+          if (sira[p].mesafe(konumkullanici) >
+              sira[p + 1].mesafe(konumkullanici)) {
+            temp = sira[p];
+            sira[p] = sira[p + 1];
+            sira[p + 1] = temp;
+          }
+        }
+      }
     }
-    //for (int p = 0; p < 4; p++) {
-    //  if (sira[p] == sira[p + 1]) {}
-    // }
+    for (int p = 0; p < 4; p++) {
+      print("${sira[p].ad}, ${sira[p].mesafe(konumkullanici)} km uzakta.");
+      if (sira[p].siralama == 0) {
+        print("Eşleşme var :)");
+      } else {
+        for (int j = 0; j < sira[p].siralama; j++) {
+          if (sira[p].olmayanlar[j] == 0) {
+            print("Burger King yok");
+          }
+          if (sira[p].olmayanlar[j] == 1) {
+            print("Sinema yok");
+          }
+          if (sira[p].olmayanlar[j] == 2) {
+            print("Koton yok");
+          }
+          if (sira[p].olmayanlar[j] == 3) {
+            print("Mavi yok");
+          }
+          if (sira[p].olmayanlar[j] == 4) {
+            print("Fenerium yok");
+          }
+        }
+      }
+    }
   }
 }
